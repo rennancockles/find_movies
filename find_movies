@@ -1,0 +1,24 @@
+#! /usr/bin/python3.5 -B
+# -*- coding: utf-8 -*-
+
+import requests, sys
+from lxml import html
+
+r = requests.get('http://filmesmonster.com')
+tree = html.fromstring(r.content)
+result = tree.xpath('//h2[@class="entry-title"]/a/@*[name()="title" or name()="href"]')
+
+if len(sys.argv) > 1:
+    try:
+        result = result[:int(sys.argv[1])*2]
+    except:
+        print('Ta usando errado neh')
+        print('Uso: %s [quantidade]' % sys.argv[0])
+        exit()
+
+for link,title in zip(result[0::2],result[1::2]):
+    print(title[10:])
+    print(link)
+    print()
+
+
