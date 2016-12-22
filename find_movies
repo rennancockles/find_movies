@@ -1,4 +1,4 @@
-#! /usr/bin/python3.5 -B
+#! /usr/bin/python -B
 # -*- coding: utf-8 -*-
 
 import requests, sys
@@ -19,6 +19,6 @@ if len(sys.argv) > 1:
 for link,title in zip(result[0::2],result[1::2]):
     print(title[10:])
     print(link)
-    print()
+    print('')
 
 
